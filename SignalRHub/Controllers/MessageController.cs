@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
@@ -20,7 +21,7 @@ namespace SignalRHub.Controllers
             _context = context;
         }
 
-
+        [Authorize]
         [HttpGet]
         public IActionResult Get()
         {
@@ -60,7 +61,7 @@ namespace SignalRHub.Controllers
             {
                 retMessage = e.ToString();
             }
-            return Ok(retMessage);
+            return Ok();
         }
 
         [HttpGet("read/{id}")]
